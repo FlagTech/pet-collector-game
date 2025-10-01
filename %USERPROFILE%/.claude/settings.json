@@ -1,0 +1,6 @@
+{
+  "statusLine": {
+    "type": "command",
+    "command": "powershell -command \"$input = $input | ConvertFrom-Json; $time = Get-Date -Format 'HH:mm:ss'; $model = $input.model.display_name; $workdir = $input.workspace.current_dir; Write-Output \\\"模型: $model | 時間: $time | 工作路徑: $workdir\\\"\""
+  }
+}

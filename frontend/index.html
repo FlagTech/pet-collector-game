@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐾 寵物收集遊戲</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1>🐾 寵物收集遊戲</h1>
+            <div class="player-info" id="playerInfo" style="display: none;">
+                <div class="stats">
+                    <span>等級: <span id="playerLevel">1</span></span>
+                    <span>金幣: <span id="playerCoins">100</span></span>
+                    <span>寶石: <span id="playerGems">5</span></span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- 登入區域 -->
+            <div id="loginSection" class="section">
+                <h2>歡迎來到寵物世界！</h2>
+                <div class="login-form">
+                    <input type="text" id="playerName" placeholder="輸入你的名字" maxlength="20">
+                    <button onclick="createPlayer()" class="btn primary">開始遊戲</button>
+                </div>
+            </div>
+
+            <!-- 遊戲主界面 -->
+            <div id="gameSection" class="section" style="display: none;">
+                <div class="game-tabs">
+                    <button onclick="showTab('pets')" class="tab-btn active">我的寵物</button>
+                    <button onclick="showTab('gacha')" class="tab-btn">抽取寵物</button>
+                    <button onclick="showTab('shop')" class="tab-btn">商店</button>
+                    <button onclick="showTab('achievements')" class="tab-btn">成就</button>
+                </div>
+
+                <!-- 我的寵物頁面 -->
+                <div id="petsTab" class="tab-content active">
+                    <h3>我的寵物 (<span id="petCount">0</span>)</h3>
+                    <div id="petsList" class="pets-grid">
+                        <p class="empty-message">還沒有寵物，快去抽取一隻吧！</p>
+                    </div>
+                </div>
+
+                <!-- 抽取寵物頁面 -->
+                <div id="gachaTab" class="tab-content">
+                    <h3>✨ 神秘寵物蛋</h3>
+                    <div class="gacha-section">
+                        <div class="gacha-egg">🥚</div>
+                        <p>消耗 1 寶石抽取神秘寵物！</p>
+                        <button onclick="drawPet()" class="btn primary">抽取寵物 (1💎)</button>
+                        <div class="rarity-rates">
+                            <small>
+                                普通 50% | 稀有 30% | 史詩 15% | 傳說 5%
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 商店頁面 -->
+                <div id="shopTab" class="tab-content">
+                    <h3>🏪 寵物商店</h3>
+                    <div class="shop-items">
+                        <div class="shop-item">
+                            <span>🍖 寵物食物</span>
+                            <button onclick="buyItem('food', 10)" class="btn">10金幣</button>
+                        </div>
+                        <div class="shop-item">
+                            <span>🎾 玩具</span>
+                            <button onclick="buyItem('toy', 25)" class="btn">25金幣</button>
+                        </div>
+                        <div class="shop-item">
+                            <span>💎 寶石包</span>
+                            <button onclick="buyItem('gems', 100)" class="btn">100金幣</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 成就頁面 -->
+                <div id="achievementsTab" class="tab-content">
+                    <h3>🏆 成就系統</h3>
+                    <div id="achievementsList" class="achievements-list">
+                        <!-- 成就將動態載入 -->
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- 訊息提示 -->
+        <div id="messageBox" class="message-box"></div>
+
+        <!-- 寵物詳情對話框 -->
+        <div id="petModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closePetModal()">&times;</span>
+                <div id="petDetails"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/game.js"></script>
+</body>
+</html>
